@@ -35,18 +35,18 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Logo 容器與立體陰影 */
+        /* 向量 Logo 區塊樣式優化 */
         .logo-container {
             width: 100%;
             max-width: 500px;
             text-align: center;
-            margin-top: 10px;
+            margin-top: 15px;
         }
 
-        .logo-container img {
-            max-width: 200px;
+        .logo-svg {
+            width: 210px;
             height: auto;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.08));
+            filter: drop-shadow(0 3px 5px rgba(0,0,0,0.08));
         }
         
         /* Apple 風格玻璃擬態卡片 */
@@ -114,7 +114,11 @@
 <body>
 
 <div class="logo-container">
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAA0CAMAAAAgP39hAAAASFBMVEV/wP7///9/wP9/wP9/wP9/wP9/wP9/wP9/wP9/wP9/wP9/wP9/wP9/wP9/wP9/wP9/wP9/wP9/wP9/wP9/wP9/wP9/wP9/wP619f7wAAAAFnRSTlMAEBAwQFBggICQoMDQ4PEBESExQVFhcY3fX98AAAJZSURBVGjdecLpcoMwEAVgM9gGg80u29z/eUvVpE6Z6pC6v86MRg869E+zD3v/s7GgqMv6vG4M7M8Nhm77R6NhAAb96bEAsOifpgrAon+aCwCL/mUrADX9yzYAavqX7QAU9S/bASjqX7YFUNTftgUoqPst9qGo+y3Wp6Lut1itSkXdb7E6pZDut1gdkpBut1iNSIK632I1IAnqfovVgCSp+y1WAwSg7rdY9RBA3W+x6gBv6n6LVQfI/S9Yv8z9FmtRpn7v66f/gTqI8vS7PxlUCOfph34ypED99IsRBepn/xlUovZ7HzIkWffdL0clarf3wYgCtdv7wYgSddf9KFC6vR+MKFF33b9XpXR7H0SButt7V6Duun+PAtV2XwWo7b4KUNt9FaC2+ypAvbYbyv6wG8r+sBvK/rAbSkXdb7FKVdT9FqtSRd1vsSpV1P0Wq0JF3W+xEipD3W+xSikNdb/FSqgcKurdK9ZbyRzqoGLuXrEeymXm7hXrrWQG1Zf7w76N6h/fRtWXmbuvWJeSGVVfau6+YF1KZpTeH0bVpWReub+MKiXzyv1pVKXk6f4wqlLy9FsvRipRv/X6IFC6vR+N1b8I1G6vjALVdl8FqO2+ClDbfRWgtvsqQL22G8p++Ww3FHe/wYpUVPca7ENFda/BPlRUtxpMQUV1p8EUVFT3GkxBRd0bYHIq6t4Ak1JRf2D6Z0b9gelXRP39M2b6758x0/+PWev/M2v9Y9Y666S1zjpprbNWeuu01VvrrNVWb62zVlu9tdba6KyVxlopjbXSWvcf3Zp2vA3fCfkAAAAASUVORK5CYII=" alt="大學眼鏡">
+    <svg class="logo-svg" viewBox="0 0 260 60" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="30" cy="30" r="26" fill="#39b54a"/>
+        <path d="M26 18 C20 20, 16 26, 17 33 C18 39, 24 43, 31 42 C37 41, 41 36, 42 31 C42 30, 39 30, 37 30 C36 34, 33 37, 29 37 C25 38, 22 35, 22 31 C22 30, 42 27, 42 25 C41 19, 34 16, 26 18 Z M27 21 C31 20, 36 22, 37 25 C31 26, 24 27, 23 26 C23 23, 24 21, 27 21 Z" fill="#ffffff"/>
+        <text x="70" y="42" font-family="'PingFang TC', 'Microsoft JhengHei', sans-serif" font-size="34" font-weight="900" fill="#39b54a" letter-spacing="1">大學眼鏡</text>
+    </svg>
 </div>
 
 <div class="container">
