@@ -35,7 +35,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Logo 容器：與頂端純白融合 */
+        /* Logo 容器 */
         .logo-container {
             width: 100%;
             max-width: 500px;
@@ -82,6 +82,7 @@
         .radio-label input { margin-right: 14px; transform: scale(1.25); }
         .radio-label:hover { transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
 
+        /* 處方個別點選視覺回饋 */
         .rx-myopia { color: var(--color-myopia); } .rx-myopia input { accent-color: var(--color-myopia); }
         .rx-myopia:has(input:checked) { border-color: var(--color-myopia); background-color: #f0f7ff; box-shadow: 0 0 0 1px var(--color-myopia), 0 4px 12px rgba(0, 102, 204, 0.1); }
         
@@ -97,6 +98,14 @@
         .rx-control { color: var(--color-control); } .rx-control input { accent-color: var(--color-control); }
         .rx-control:has(input:checked) { border-color: var(--color-control); background-color: #f4faff; box-shadow: 0 0 0 1px var(--color-control), 0 4px 12px rgba(0, 119, 145, 0.1); }
         
+        /* 轉配轉換群組專用樣式 */
+        .flex-row-group { display: flex; flex-direction: row; gap: 12px; }
+        .flex-row-group .radio-label { flex: 1; justify-content: center; padding: 14px; }
+        .convert-yes:has(input:checked) { border-color: #107c41; background-color: #f3faf5; color: #107c41; box-shadow: 0 0 0 1px #107c41; }
+        .convert-no:has(input:checked) { border-color: #dc2626; background-color: #fef2f2; color: #dc2626; box-shadow: 0 0 0 1px #dc2626; }
+        .convert-yes input { accent-color: #107c41; }
+        .convert-no input { accent-color: #dc2626; }
+
         .btn-submit { width: 100%; padding: 16px; background: var(--btn-gradient); color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 10px; box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3), inset 0 1px 0 rgba(255,255,255,0.2); transition: all 0.2s ease; }
         .btn-submit:hover { background: var(--btn-hover-gradient); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(30, 58, 138, 0.45); }
         .btn-submit:disabled { background: #cbd5e1; color: #94a3b8; cursor: not-allowed; }
@@ -199,6 +208,14 @@
         </div>
 
         <div class="form-group">
+            <label class="required">若客戶未配智慧眼鏡鏡片，是否改配為一般眼鏡或其它消費？</label>
+            <div class="radio-group flex-row-group">
+                <label class="radio-label convert-yes"><input type="radio" name="is_converted" value="是" required> 是</label>
+                <label class="radio-label convert-no"><input type="radio" name="is_converted" value="否"> 否</label>
+            </div>
+        </div>
+
+        <div class="form-group">
             <label>補充說明</label>
             <textarea name="memo" id="memoTextarea" rows="3" placeholder="若有特殊客製規格或品牌備註，請在此輸入..."></textarea>
         </div>
@@ -272,7 +289,7 @@
                 <div class="item-details">
                     <div class="inv">單號：${item.invoice_no}</div>
                     <div style="font-weight:600; margin-top:2px; color:#1e293b;">${item.store} | ${item.device_type}</div>
-                    <div class="meta">處方：<span style="font-weight:700;">${item.rx_type}</span></div>
+                    <div class="meta">處方：<span style="font-weight:700;">${item.rx_type}</span> | 其它轉配：<span style="font-weight:700; color:${item.is_converted === '是' ? '#107c41' : '#dc2626'};">${item.is_converted}</span></div>
                 </div>
                 <button type="button" class="btn-edit" onclick="editRecord('${item.invoice_no}')">✏️ 修改</button>
             </div>
@@ -289,8 +306,11 @@
             document.getElementById('deviceSelect').value = record.device_type;
             document.getElementById('memoTextarea').value = record.memo;
             
-            const radio = form.querySelector(`input[name="rx_type"][value="${record.rx_type}"]`);
-            if(radio) radio.checked = true;
+            const rxRadio = form.querySelector(`input[name="rx_type"][value="${record.rx_type}"]`);
+            if(rxRadio) rxRadio.checked = true;
+
+            const convRadio = form.querySelector(`input[name="is_converted"][value="${record.is_converted}"]`);
+            if(convRadio) convRadio.checked = true;
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
             alert('已將單號 ' + invoiceNo + ' 的數據抽回上方表單，修正後重新提交即可。');
