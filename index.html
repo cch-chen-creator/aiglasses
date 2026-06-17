@@ -7,26 +7,28 @@
     <style>
         :root {
             --primary-color: #2563eb;
-            --btn-gradient: linear-gradient(135deg, #2b579a 0%, #1e3a8a 100%);
-            --btn-hover-gradient: linear-gradient(135deg, #3b71ca 0%, #254b8c 100%);
-            --bg-gradient: linear-gradient(to bottom, #ffffff 0%, #f1f5f9 25%, #cbd5e1 100%);
+            --btn-gradient: linear-gradient(135deg, #1d4ed8 0%, #0f172a 100%);
+            --btn-hover-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            
+            /* 💡 視覺重調：背景改為穩定的金屬色，使玻璃擬態卡片對比更鮮明 */
+            --bg-color: #cbd5e1;
+            
             --text-main: #0f172a;
             --text-muted: #475569;
             
-            /* 處方類別色彩語意 */
-            --color-myopia: #0066cc;     
-            --color-presbyopia: #b74d00; 
-            --color-progressive: #107c41;
-            --color-plano: #555555;      
-            --color-control: #007791;    
+            /* 處方類別重色彩語意 */
+            --color-myopia: #1e40af;     
+            --color-presbyopia: #ea580c; 
+            --color-progressive: #16a34a;
+            --color-plano: #334155;      
+            --color-control: #0284c7;    
         }
         
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
-            background: var(--bg-gradient);
-            background-attachment: fixed;
+            background: var(--bg-color);
             color: var(--text-main); 
-            padding: 10px 15px 50px 15px; 
+            padding: 30px 15px 50px 15px; 
             display: flex; 
             flex-direction: column;
             align-items: center;
@@ -34,100 +36,123 @@
             gap: 24px;
             -webkit-font-smoothing: antialiased;
         }
-
-        /* Logo 容器 */
-        .logo-container {
-            width: 100%;
-            max-width: 500px;
-            text-align: center;
-            margin-top: 15px;
-            background: transparent;
-        }
-
-        .logo-container img {
-            max-width: 210px;
-            height: auto;
-            display: inline-block;
-        }
         
-        /* Apple 風格玻璃擬態卡片 */
+        /* 💎 Apple 玻璃擬態卡片（高飽和度、立體重陰影） */
         .container, .history-container { 
-            background: rgba(255, 255, 255, 0.85); 
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: 35px 25px; 
-            border-radius: 20px; 
+            background: rgba(255, 255, 255, 0.90); 
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            padding: 40px 28px; 
+            border-radius: 24px; 
             width: 100%; 
             max-width: 500px; 
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 
-                        0 20px 40px -5px rgba(15, 23, 42, 0.12), 
-                        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 
+                        0 25px 50px -12px rgba(15, 23, 42, 0.25), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.9);
             box-sizing: border-box;
         }
+
+        /* 💡 修正 1：Logo 容器內嵌於卡片最頂端，不再受去背問題困擾 */
+        .card-logo-box {
+            text-align: center;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: var(--bg-color); /* 採用與背景一致的金屬色 */
+            border-radius: 16px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.04);
+        }
+
+        .card-logo-box img {
+            max-width: 200px;
+            height: auto;
+            display: inline-block;
+            vertical-align: middle;
+        }
         
-        h2 { font-size: 24px; font-weight: 700; margin: 10px 0 6px 0; text-align: center; letter-spacing: -0.5px; color: #000; }
-        .subtitle { text-align: center; color: var(--text-muted); font-size: 14px; margin-bottom: 30px; font-weight: 500; }
-        .form-group { margin-bottom: 24px; }
-        label { display: block; font-weight: 600; margin-bottom: 10px; font-size: 15px; color: var(--text-main); }
+        h2 { font-size: 24px; font-weight: 800; margin: 10px 0 6px 0; text-align: center; letter-spacing: -0.5px; color: #000; }
+        .subtitle { text-align: center; color: var(--text-muted); font-size: 14px; margin-bottom: 35px; font-weight: 600; letter-spacing: 1px; }
+        .form-group { margin-bottom: 26px; }
+        label { display: block; font-weight: 700; margin-bottom: 12px; font-size: 15px; color: #000; }
         .required::after { content: " *"; color: #df1c1c; }
         
+        /* 表單輸入框樣式 */
         select, input[type="tel"], textarea { 
-            width: 100%; padding: 14px 16px; border: 1px solid #b0bec5; border-radius: 12px; font-size: 16px; box-sizing: border-box; background-color: rgba(255, 255, 255, 0.9); box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06); transition: all 0.25s ease; color: var(--text-main); -webkit-appearance: none;
+            width: 100%; padding: 15px 16px; border: 1.5px solid #cbd5e1; border-radius: 14px; font-size: 16px; box-sizing: border-box; background-color: #fff; box-shadow: inset 0 2px 4px rgba(15, 23, 42, 0.04); transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); color: var(--text-main); -webkit-appearance: none;
         }
-        select:focus, input:focus, textarea:focus { border-color: #0066cc; box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.2); background-color: #fff; outline: none; }
+        select:focus, input:focus, textarea:focus { border-color: var(--primary-color); box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2); background-color: #fff; outline: none; }
         
-        .radio-group { display: flex; flex-direction: column; gap: 10px; }
-        .radio-label { display: flex; align-items: center; padding: 14px 18px; border: 1px solid #cfd8dc; border-radius: 12px; cursor: pointer; font-size: 16px; font-weight: 600; background-color: rgba(255, 255, 255, 0.7); box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: all 0.2s ease; }
-        .radio-label input { margin-right: 14px; transform: scale(1.25); }
-        .radio-label:hover { transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
+        .radio-group { display: flex; flex-direction: column; gap: 12px; }
+        
+        /* 處方類別選項 */
+        .radio-label { 
+            display: flex; 
+            align-items: center; 
+            padding: 16px 20px; 
+            border: 1.5px solid #e2e8f0; 
+            border-radius: 14px; 
+            cursor: pointer; 
+            font-size: 16px; 
+            font-weight: 700; 
+            background-color: #fff; 
+            box-shadow: 0 2px 4px rgba(15, 23, 42, 0.02); 
+            transition: all 0.2s ease; 
+        }
+        .radio-label input { margin-right: 14px; transform: scale(1.3); }
+        .radio-label:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(15, 23, 42, 0.08); border-color: #cbd5e1; }
 
-        /* 處方個別點選視覺回饋 */
+        /* 5色重彩聚焦反饋 */
         .rx-myopia { color: var(--color-myopia); } .rx-myopia input { accent-color: var(--color-myopia); }
-        .rx-myopia:has(input:checked) { border-color: var(--color-myopia); background-color: #f0f7ff; box-shadow: 0 0 0 1px var(--color-myopia), 0 4px 12px rgba(0, 102, 204, 0.1); }
+        .rx-myopia:has(input:checked) { border-color: var(--color-myopia); background-color: #f0f6ff; box-shadow: 0 0 0 1px var(--color-myopia), 0 8px 16px rgba(30, 64, 175, 0.12); }
         
         .rx-presbyopia { color: var(--color-presbyopia); } .rx-presbyopia input { accent-color: var(--color-presbyopia); }
-        .rx-presbyopia:has(input:checked) { border-color: var(--color-presbyopia); background-color: #fffaf5; box-shadow: 0 0 0 1px var(--color-presbyopia), 0 4px 12px rgba(183, 77, 0, 0.1); }
+        .rx-presbyopia:has(input:checked) { border-color: var(--color-presbyopia); background-color: #fff7ed; box-shadow: 0 0 0 1px var(--color-presbyopia), 0 8px 16px rgba(234, 88, 12c, 0.12); }
         
         .rx-progressive { color: var(--color-progressive); } .rx-progressive input { accent-color: var(--color-progressive); }
-        .rx-progressive:has(input:checked) { border-color: var(--color-progressive); background-color: #f3faf5; box-shadow: 0 0 0 1px var(--color-progressive), 0 4px 12px rgba(16, 124, 65, 0.1); }
+        .rx-progressive:has(input:checked) { border-color: var(--color-progressive); background-color: #f0fdf4; box-shadow: 0 0 0 1px var(--color-progressive), 0 8px 16px rgba(22, 163, 74, 0.12); }
         
         .rx-plano { color: var(--color-plano); } .rx-plano input { accent-color: var(--color-plano); }
-        .rx-plano:has(input:checked) { border-color: var(--color-plano); background-color: #f8fafc; box-shadow: 0 0 0 1px var(--color-plano), 0 4px 12px rgba(85, 85, 85, 0.08); }
+        .rx-plano:has(input:checked) { border-color: var(--color-plano); background-color: #f8fafc; box-shadow: 0 0 0 1px var(--color-plano), 0 8px 16px rgba(51, 65, 85, 0.1); }
         
         .rx-control { color: var(--color-control); } .rx-control input { accent-color: var(--color-control); }
-        .rx-control:has(input:checked) { border-color: var(--color-control); background-color: #f4faff; box-shadow: 0 0 0 1px var(--color-control), 0 4px 12px rgba(0, 119, 145, 0.1); }
+        .rx-control:has(input:checked) { border-color: var(--color-control); background-color: #f0f9ff; box-shadow: 0 0 0 1px var(--color-control), 0 8px 16px rgba(2, 132, 199, 0.12); }
         
-        /* 轉配轉換群組專用樣式 */
+        /* 轉配轉換欄位 */
         .flex-row-group { display: flex; flex-direction: row; gap: 12px; }
-        .flex-row-group .radio-label { flex: 1; justify-content: center; padding: 14px; }
-        .convert-yes:has(input:checked) { border-color: #107c41; background-color: #f3faf5; color: #107c41; box-shadow: 0 0 0 1px #107c41; }
-        .convert-no:has(input:checked) { border-color: #dc2626; background-color: #fef2f2; color: #dc2626; box-shadow: 0 0 0 1px #dc2626; }
-        .convert-yes input { accent-color: #107c41; }
+        .flex-row-group .radio-label { flex: 1; justify-content: center; padding: 15px; }
+        .convert-yes:has(input:checked) { border-color: #16a34a; background-color: #f0fdf4; color: #16a34a; box-shadow: 0 0 0 1px #16a34a, 0 8px 16px rgba(22, 163, 74, 0.1); }
+        .convert-no:has(input:checked) { border-color: #dc2626; background-color: #fef2f2; color: #dc2626; box-shadow: 0 0 0 1px #dc2626, 0 8px 16px rgba(220, 38, 38, 0.1); }
+        .convert-yes input { accent-color: #16a34a; }
         .convert-no input { accent-color: #dc2626; }
 
-        .btn-submit { width: 100%; padding: 16px; background: var(--btn-gradient); color: #fff; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 10px; box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3), inset 0 1px 0 rgba(255,255,255,0.2); transition: all 0.2s ease; }
-        .btn-submit:hover { background: var(--btn-hover-gradient); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(30, 58, 138, 0.45); }
-        .btn-submit:disabled { background: #cbd5e1; color: #94a3b8; cursor: not-allowed; }
-        .note { font-size: 13px; color: var(--text-muted); margin-top: 6px; }
+        /* 按鈕樣式 */
+        .btn-submit { width: 100%; padding: 18px; background: var(--btn-gradient); color: #fff; border: none; border-radius: 14px; font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 10px; box-shadow: 0 8px 20px rgba(15, 23, 42, 0.3), inset 0 1px 0 rgba(255,255,255,0.2); transition: all 0.2s ease; letter-spacing: 1px; }
+        .btn-submit:hover { background: var(--btn-hover-gradient); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(37, 99, 235, 0.4); }
+        .btn-submit:active { transform: translateY(1px); }
+        .btn-submit:disabled { background: #cbd5e1; color: #94a3b8; cursor: not-allowed; transform: none; box-shadow: none; }
+        
+        .note { font-size: 13px; color: var(--text-muted); margin-top: 6px; font-weight: 500; display: flex; justify-content: space-between; }
+        .counter { font-weight: 700; color: var(--primary-color); }
 
-        h3 { font-size: 16px; font-weight: 700; margin: 0 0 18px 0; display: flex; justify-content: space-between; }
+        /* 歷史清單面板 */
+        h3 { font-size: 16px; font-weight: 700; margin: 0 0 18px 0; display: flex; justify-content: space-between; color: #000; }
         .history-list { display: flex; flex-direction: column; gap: 12px; max-height: 320px; overflow-y: auto; }
-        .history-item { padding: 14px; border: 1px solid #e2e8f0; border-radius: 10px; background-color: rgba(255,255,255,0.6); font-size: 14px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.01); }
+        .history-item { padding: 16px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #fff; font-size: 14px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(15, 23, 42, 0.02); }
         .item-details .inv { font-weight: 700; color: #000; font-size: 15px; }
-        .item-details .meta { color: var(--text-muted); font-size: 12px; margin-top: 2px; }
-        .btn-edit { padding: 7px 14px; background-color: #fff; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 13px; cursor: pointer; font-weight: 600; color: #dc2626; box-shadow: 0 2px 4px rgba(0,0,0,0.03); transition: all 0.15s ease; }
-        .btn-edit:hover { background-color: #fef2f2; border-color: #fca5a5; }
+        .item-details .meta { color: var(--text-muted); font-size: 12px; margin-top: 4px; font-weight: 500; }
+        .btn-edit { padding: 8px 16px; background-color: #fff; border: 1.5px solid #e2e8f0; border-radius: 10px; font-size: 13px; cursor: pointer; font-weight: 700; color: #dc2626; box-shadow: 0 2px 4px rgba(0,0,0,0.02); transition: all 0.15s ease; }
+        .btn-edit:hover { background-color: #fef2f2; border-color: #fca5a5; transform: translateY(-1px); box-shadow: 0 4px 8px rgba(220, 38, 38, 0.08); }
         .no-data { text-align: center; color: var(--text-muted); font-size: 14px; padding: 24px 0; }
     </style>
 </head>
 <body>
 
-<div class="logo-container">
-    <img src="logo.png" alt="大學眼鏡">
-</div>
-
 <div class="container">
+    <div class="card-logo-box">
+        <img src="logo.png" alt="大學眼鏡">
+    </div>
+
     <h2>智慧眼鏡驗配調查</h2>
     <div class="subtitle">2026年度記錄</div>
     
@@ -176,15 +201,18 @@
         </div>
 
         <div class="form-group">
-            <label class="required">三聯單號</label>
-            <input type="tel" name="invoice_no" id="invoiceInput" placeholder="請輸入 12 碼純數字" pattern="\d{12}" maxlength="12" required>
-            <div class="note">編碼：店別 4 碼 + 年度 2 碼 + 流水碼 6 碼</div>
+            <label>三聯單號 (選填)</label>
+            <input type="tel" name="invoice_no" id="invoiceInput" placeholder="選填，標準格式為 12 碼純數字" pattern="\d{12}" maxlength="12">
+            <div class="note">
+                <span>編碼：店別 4 碼 + 年度 2 碼 + 流水碼 6 碼</span>
+                <span>已輸入 <span class="counter" id="charCount">0</span> / 12 字元</span>
+            </div>
         </div>
 
         <div class="form-group">
-            <label class="required">智慧眼鏡類型</label>
-            <select name="device_type" id="deviceSelect" required>
-                <option value="">請選擇眼鏡品牌...</option>
+            <label>智慧眼鏡類型 (選填)</label>
+            <select name="device_type" id="deviceSelect">
+                <option value="">請選擇眼鏡品牌 (若無則免填)...</option>
                 <option value="Meta Ray-Ban">Meta Ray-Ban</option>
                 <option value="ASUS AirVision M1">ASUS AirVision M1</option>
                 <option value="ASUS ROG XREAL R1">ASUS ROG XREAL R1</option>
@@ -233,11 +261,18 @@
     const form = document.getElementById('surveyForm');
     const submitBtn = document.getElementById('submitBtn');
     const historyList = document.getElementById('historyList');
+    const invoiceInput = document.getElementById('invoiceInput');
+    const charCount = document.getElementById('charCount');
 
-    // ⚠️ 請在此處更換為您的 Google Apps Script 實體部署網址
+    // ⚠️ 請記得在此處更換為您的 Google Apps Script 實體部署網址
     const scriptUrl = 'https://script.google.com/macros/s/AKfycbzmKUvcAfvesNHHthe8iiw-Co28v43ufyafDEo_1JR04I6-VcZaIUyJ0EKxfdYGkhbo1A/exec'; 
 
     document.addEventListener('DOMContentLoaded', renderHistory);
+
+    // 💡 監聽三聯單號輸入，即時計算字元數
+    invoiceInput.addEventListener('input', function() {
+        charCount.innerText = this.value.length;
+    });
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -246,6 +281,14 @@
 
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
+
+        // 為了在沒有輸入單號時 local 歷史紀錄不會因 undefined 出錯，給予預設顯示文字
+        if(!data.invoice_no) {
+            data.invoice_no = "未填單號(" + new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'}) + ")";
+        }
+        if(!data.device_type) {
+            data.device_type = "未指定機型";
+        }
 
         fetch(scriptUrl, {
             method: 'POST',
@@ -257,6 +300,7 @@
             alert('紀錄提交成功！');
             saveToLocal(data); 
             form.reset();
+            charCount.innerText = 0; // 重置計數器
             renderHistory();   
         })
         .catch(error => {
@@ -289,7 +333,7 @@
                 <div class="item-details">
                     <div class="inv">單號：${item.invoice_no}</div>
                     <div style="font-weight:600; margin-top:2px; color:#1e293b;">${item.store} | ${item.device_type}</div>
-                    <div class="meta">處方：<span style="font-weight:700;">${item.rx_type}</span> | 其它轉配：<span style="font-weight:700; color:${item.is_converted === '是' ? '#107c41' : '#dc2626'};">${item.is_converted}</span></div>
+                    <div class="meta">處方：<span style="font-weight:700;">${item.rx_type}</span> | 其它轉配：<span style="font-weight:700; color:${item.is_converted === '是' ? '#16a34a' : '#dc2626'};">${item.is_converted}</span></div>
                 </div>
                 <button type="button" class="btn-edit" onclick="editRecord('${item.invoice_no}')">✏️ 修改</button>
             </div>
@@ -302,8 +346,17 @@
         
         if(record) {
             document.getElementById('storeSelect').value = record.store;
-            document.getElementById('invoiceInput').value = record.invoice_no;
-            document.getElementById('deviceSelect').value = record.device_type;
+            
+            // 如果是帶有時間戳記的自動生成未填格式，則反填空字串
+            if(record.invoice_no.startsWith("未填單號")) {
+                document.getElementById('invoiceInput').value = "";
+                charCount.innerText = 0;
+            } else {
+                document.getElementById('invoiceInput').value = record.invoice_no;
+                charCount.innerText = record.invoice_no.length;
+            }
+            
+            document.getElementById('deviceSelect').value = record.device_type === "未指定機型" ? "" : record.device_type;
             document.getElementById('memoTextarea').value = record.memo;
             
             const rxRadio = form.querySelector(`input[name="rx_type"][value="${record.rx_type}"]`);
@@ -313,7 +366,7 @@
             if(convRadio) convRadio.checked = true;
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            alert('已將單號 ' + invoiceNo + ' 的數據抽回上方表單，修正後重新提交即可。');
+            alert('已將資料抽回上方表單，修正後重新提交即可。');
         }
     }
 </script>
