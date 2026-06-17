@@ -9,7 +9,8 @@
             --primary-color: #2563eb;
             --btn-gradient: linear-gradient(135deg, #2b579a 0%, #1e3a8a 100%);
             --btn-hover-gradient: linear-gradient(135deg, #3b71ca 0%, #254b8c 100%);
-            --bg-gradient: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 50%, #94a3b8 100%);
+            /* 💡 重新調校：頂端純白垂直漸層至鈦金屬色，完美融合白底 Logo */
+            --bg-gradient: linear-gradient(to bottom, #ffffff 0%, #f1f5f9 25%, #cbd5e1 100%);
             --text-main: #0f172a;
             --text-muted: #475569;
             
@@ -26,7 +27,7 @@
             background: var(--bg-gradient);
             background-attachment: fixed;
             color: var(--text-main); 
-            padding: 20px 15px 50px 15px; 
+            padding: 10px 15px 50px 15px; 
             display: flex; 
             flex-direction: column;
             align-items: center;
@@ -35,19 +36,19 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Logo 容器樣式 */
+        /* Logo 容器：移除任何可能產生陰影邊框的濾鏡，確保與頂端純白融合 */
         .logo-container {
             width: 100%;
             max-width: 500px;
             text-align: center;
             margin-top: 15px;
+            background: transparent;
         }
 
-        /* 精準呼叫您上傳的實體 logo.png 檔案 */
         .logo-container img {
             max-width: 210px;
             height: auto;
-            filter: drop-shadow(0 3px 5px rgba(0,0,0,0.08));
+            display: inline-block;
         }
         
         /* Apple 風格玻璃擬態卡片 */
@@ -149,7 +150,7 @@
                 <option value="0089_桃園龍潭">0089_桃園龍潭</option>
                 <option value="0090_板橋文化">0090_板橋文化</option>
                 <option value="0091_北市士林">0091_北市士林</option>
-                <option value="0092_中和南勢角">0092_中和南勢角</option>
+                <option value="0092_amp;中和南勢角">0092_中和南勢角</option>
                 <option value="0094_台中豐原">0094_台中豐原</option>
                 <option value="0095_台中東勢">0095_台中東勢</option>
                 <option value="0097_屏東潮州">0097_屏東潮州</option>
