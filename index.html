@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>大學眼鏡 | 智慧眼鏡驗配調查</title>
+    <meta property="og:title" content="智慧眼鏡驗配調查">
+    <meta property="og:description" content="2026上半年記錄 - 歷史成交記錄盤點">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="大學眼鏡AI智慧眼鏡">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Urbanist:wght@400;600;700&display=swap" rel="stylesheet">
@@ -18,7 +24,7 @@
             --text-main: #0f172a;
             --text-muted: #475569;
             
-            /* Apple 經典選取確認色（精緻數位藍與立體光暈） */
+            /* Apple 經典選取確認色（數位藍與立體光暈） */
             --apple-selected-border: #0066cc;
             --apple-selected-glow: rgba(0, 102, 204, 0.15);
             
@@ -59,7 +65,7 @@
             box-sizing: border-box;
         }
 
-        /* 大學眼鏡 Logo 容器 */
+        /* 大學眼鏡 Logo 容器 (無灰色底色) */
         .card-logo-box {
             text-align: center;
             margin-bottom: 25px;
@@ -69,6 +75,7 @@
             box-shadow: none;
         }
 
+        /* Logo 尺寸放大為 220% */
         .card-logo-box img {
             max-width: 132px;
             height: auto;
@@ -96,7 +103,7 @@
             outline: none; 
         }
         
-        /* 💡 核心優化：比照 Apple Store 選自訂規格，填妥後動態加上的「彩色鎖定圖框」效果 */
+        /* Apple Store 自訂選項鎖定圖框效果 */
         select.filled, input.filled {
             border-color: var(--apple-selected-border);
             background-color: #fafdff;
@@ -208,7 +215,7 @@
                 <option value="0203_台中崇德">0203_台中崇德</option>
                 <option value="0204_桃園藝文">0204_桃園藝文</option>
                 <option value="0205_新竹竹北">0205_新竹竹北</option>
-                <option value="0206_雲林斗微">0206_雲林斗六</option>
+                <option value="0206_雲林斗六">0206_雲林斗六</option>
                 <option value="0207_基隆義一">0207_基隆義一</option>
             </select>
         </div>
@@ -273,36 +280,31 @@
     const submitBtn = document.getElementById('submitBtn');
     const historyList = document.getElementById('historyList');
     
-    // 監測目標物件
     const storeSelect = document.getElementById('storeSelect');
     const invoiceInput = document.getElementById('invoiceInput');
     const deviceSelect = document.getElementById('deviceSelect');
     const charCount = document.getElementById('charCount');
 
-    // ⚠️ 請填入您的 Google Apps Script 實體部署網址
+    // ⚠️ 請在此處填入您的 Google Apps Script 實體部署網址
     const scriptUrl = 'https://script.google.com/macros/s/AKfycbzmKUvcAfvesNHHthe8iiw-Co28v43ufyafDEo_1JR04I6-VcZaIUyJ0EKxfdYGkhbo1A/exec'; 
 
     document.addEventListener('DOMContentLoaded', () => {
         renderHistory();
-        checkFieldsStatus(); // 初始檢查狀態
+        checkFieldsStatus(); 
     });
 
-    // 💡 核心機制：動態偵測並加入/移除 Apple 經典亮色外框 (filled 類別)
+    // 動態偵測加入 Apple 經典亮色自訂外框
     function checkFieldsStatus() {
-        // 1. 門市選單
         if (storeSelect.value !== "") storeSelect.classList.add('filled');
         else storeSelect.classList.remove('filled');
 
-        // 2. 三聯單號 (標準格式為 12 碼則亮起確認框)
         if (invoiceInput.value.length === 12) invoiceInput.classList.add('filled');
         else invoiceInput.classList.remove('filled');
 
-        // 3. 眼鏡類型選單
         if (deviceSelect.value !== "") deviceSelect.classList.add('filled');
         else deviceSelect.classList.remove('filled');
     }
 
-    // 監聽群組
     storeSelect.addEventListener('change', checkFieldsStatus);
     deviceSelect.addEventListener('change', checkFieldsStatus);
     invoiceInput.addEventListener('input', function() {
@@ -333,7 +335,7 @@
             saveToLocal(localData); 
             form.reset();
             charCount.innerText = 0; 
-            checkFieldsStatus(); // 重置所有 Apple 高光框
+            checkFieldsStatus(); 
             renderHistory();   
         })
         .catch(error => {
@@ -400,7 +402,7 @@
             if(convRadio) convRadio.checked = true;
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            checkFieldsStatus(); // 修改抽回時同步點亮已填寫之 Apple 外框
+            checkFieldsStatus(); 
             alert('已將資料抽回表單，修正後重新提交即可。');
         }
     }
